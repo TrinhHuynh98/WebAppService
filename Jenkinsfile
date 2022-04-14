@@ -16,8 +16,6 @@ pipeline {
           }
       }
       steps {
-        // sh "pip install fastapi"
-        // sh "pip install uvicorn"
         echo "Test success"
       }
     }
