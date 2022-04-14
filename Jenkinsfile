@@ -3,12 +3,11 @@ pipeline {
   agent none
 
   environment {
-    DOCKER_IMAGE = "trinh/fastapi"
+    DOCKER_IMAGE = "trinh/backendservice"
   }
 
   stages {
-
-      stage("Test") {
+    stage("Test") {
       agent {
           docker {
             image 'python:3.8-slim-buster'
@@ -16,12 +15,12 @@ pipeline {
           }
       }
       steps {
-        echo "Test success"
+        echo "Test successful"
       }
     }
 
     stage("build") {
-      agent { label 'master'}
+      agent { node {label 'master'}}
       environment {
         DOCKER_TAG="${GIT_BRANCH.tokenize('/').pop()}-${GIT_COMMIT.substring(0,7)}"
       }
